@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "camelyon-utils"
+version = "0.1"
+authors = ["Jonas Annuscheit <Jonas.Annuscheit@htw-berlin.de>", "Klaus Strohmenger <Klaus.Strohmenger@htw-berlin.de>", "Christoph Jansen <Christoph.Jansen@htw-berlin.de>"]
+license = "AGPL-3.0"
+readme = "README.md"
+repository = "https://github.com/deep-projects/camelyon-utils"
+homepage = "https://github.com/deep-projects/camelyon-utils"
+description = "CAMELYON Utils is a set of tools to process slides of the CAMELYON image database."
+
+[tool.poetry.dependencies]
+python = "^3.5"
+numpy = "^1.16"
+scikit-image = "^0.14.2"
+h5py = "^2.9"
+openslide-python = "^1.1"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+camelyon-utils = 'camelyon_utils.main:main'

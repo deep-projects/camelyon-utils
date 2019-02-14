@@ -1,0 +1,5 @@
+.idea
+dist
+camelyon_utils.egg-info
+__pycache__
+.ipynb_checkpoints

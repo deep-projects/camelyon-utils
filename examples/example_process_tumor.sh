@@ -1,0 +1,1 @@
+python3 -m camelyon_utils.slide_tiles '/home/klaus/mnt_avocado01/camelyon/camelyon_new_downloaded_2019_02_06/CAMELYON16/training/tumor/tumor_101.tif' --mask '/home/klaus/mnt_avocado01/camelyon/camelyon_new_downloaded_2019_02_06/CAMELYON16/training/lesion_annotations/tumor_101.xml' --second-scanner
