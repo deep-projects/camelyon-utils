@@ -1,6 +1,7 @@
 import h5py
 import os
 from argparse import ArgumentParser
+import numpy as np
 
 DESCRIPTION = 'Merge single hdf5-files into one.'
 
