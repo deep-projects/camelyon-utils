@@ -102,8 +102,8 @@ def main():
         merged_h5 = h5py.File(MERGED_HDF5, mode='w')
         merged_tumor_dset_train = merged_h5.create_dataset(name='tumor_train', shape=(len(f_t_train)*NUM, 512, 512, 3), dtype=np.uint8)
         merged_normal_dset_train = merged_h5.create_dataset(name='normal_train', shape=(len(f_n_train)*NUM, 512, 512, 3), dtype=np.uint8)
-        merged_tumor_dset_val = merged_h5.create_dataset(name='tumor_valid', shape=(len(f_t_val)*NUM, 512, 512, 3), dtype=np.uint8)
-        merged_normal_dset_val = merged_h5.create_dataset(name='normal_valid', shape=(len(f_n_val)*NUM, 512, 512, 3), dtype=np.uint8)
+        merged_tumor_dset_val = merged_h5.create_dataset(name='tumor_valid', shape=(len(f_t_valid)*NUM, 512, 512, 3), dtype=np.uint8)
+        merged_normal_dset_val = merged_h5.create_dataset(name='normal_valid', shape=(len(f_n_valid)*NUM, 512, 512, 3), dtype=np.uint8)
 
         for i in range(NUM):
             print('run ', i, 'of ', NUM)
