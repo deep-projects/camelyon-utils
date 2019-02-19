@@ -109,7 +109,7 @@ def main():
             for j in range(len(f_n_train)):
                 h5 = h5py.File(f_n_train[j], 'r', libver='latest', swmr=True)
                 if h5['img'].shape[1] >= 1:
-                    new_n_train[+j] = h5['img'][0,np.random.randint(0,h5['img'].shape[1])]
+                    new_n_train[j] = h5['img'][0,np.random.randint(0,h5['img'].shape[1])]
                 else:
                     new_n_train[j] = merged_normal_dset_train[-1]
             merged_normal_dset_train[i*len(f_n_train):(i+1)*len(f_n_train)] = new_n_train
