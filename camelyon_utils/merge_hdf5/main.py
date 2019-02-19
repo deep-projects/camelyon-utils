@@ -125,7 +125,7 @@ def main():
                     new_n_train[j] = merged_normal_dset_train[-1]
             merged_normal_dset_train[i*len(f_n_train):(i+1)*len(f_n_train)] = new_n_train
             
-            for j h5_t_val:
+            for j in h5_t_val:
                 if j['img'].shape[1] >= 1:
                     new_t_val[j] = j['img'][0,np.random.randint(0,j['img'].shape[1])]
                 else:
