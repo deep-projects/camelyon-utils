@@ -80,10 +80,10 @@ def main():
                 files_tumor.append(f)
             if 'ormal' in f:
                 files_normal.append(f)
-        f_t_train = files_tumor[1::2]
-        f_n_train = files_normal[1::2]
-        f_t_valid = files_tumor[0::2]
-        f_n_valid = files_normal[0::2]
+        f_t_train = files_tumor[0::2]
+        f_n_train = files_normal[0::2]
+        f_t_valid = files_tumor[1::2]
+        f_n_valid = files_normal[1::2]
         
         h5_t_train = []
         h5_n_train = []
@@ -102,8 +102,8 @@ def main():
         merged_h5 = h5py.File(MERGED_HDF5, mode='w')
         merged_tumor_dset_train = merged_h5.create_dataset(name='tumor_train', shape=(len(f_t_train)*NUM, 512, 512, 3), dtype=np.uint8)
         merged_normal_dset_train = merged_h5.create_dataset(name='normal_train', shape=(len(f_n_train)*NUM, 512, 512, 3), dtype=np.uint8)
-        merged_tumor_dset_val = merged_h5.create_dataset(name='tumor_valid', shape=(len(f_t_train)*NUM, 512, 512, 3), dtype=np.uint8)
-        merged_normal_dset_val = merged_h5.create_dataset(name='normal_valid', shape=(len(f_n_train)*NUM, 512, 512, 3), dtype=np.uint8)
+        merged_tumor_dset_val = merged_h5.create_dataset(name='tumor_valid', shape=(len(f_t_val)*NUM, 512, 512, 3), dtype=np.uint8)
+        merged_normal_dset_val = merged_h5.create_dataset(name='normal_valid', shape=(len(f_n_val)*NUM, 512, 512, 3), dtype=np.uint8)
 
         for i in range(NUM):
             print('run ', i, 'of ', NUM)
