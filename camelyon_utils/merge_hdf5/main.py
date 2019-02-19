@@ -116,28 +116,28 @@ def main():
                 if h5_t_train[j].shape[1] >= 1:
                     new_t_train[j] = h5_t_train[j][0,np.random.randint(0,h5_t_train[j].shape[1])]
                 else:
-                    new_t_train[j] = merged_tumor_dset_train[-1]
+                    new_t_train[j] = new_t_train[np.random.ranint(0,len(new_t_train))]
             merged_tumor_dset_train[i*len(f_t_train):(i+1)*len(f_t_train)] = new_t_train
             
             for j in range(len(h5_n_train)):
                 if h5_n_train[j].shape[1] >= 1:
                     new_n_train[j] = h5_n_train[j][0,np.random.randint(0,h5_n_train[j].shape[1])]
                 else:
-                    new_n_train[j] = merged_normal_dset_train[-1]
+                    new_n_train[j] = new_n_train[np.random.ranint(0,len(new_n_train))]
             merged_normal_dset_train[i*len(f_n_train):(i+1)*len(f_n_train)] = new_n_train
             
             for j in range(len(h5_t_val)):
                 if h5_t_val[j].shape[1] >= 1:
                     new_t_val[j] = h5_t_val[j][0,np.random.randint(0,h5_t_val[j].shape[1])]
                 else:
-                    new_t_val[j] = merged_tumor_dset_val[-1]
+                    new_t_val[j] = new_t_val[np.random.ranint(0,len(new_t_val))]
             merged_tumor_dset_val[i*len(f_t_valid):(i+1)*len(f_t_valid)] = new_t_val
             
             for j in range(len(h5_n_val)):
                 if h5_n_val[j].shape[1] >= 1:
                     new_n_val[j] = h5_n_val[j][0,np.random.randint(0,h5_n_val[j].shape[1])]
                 else:
-                    new_n_val[j] = merged_normal_dset_val[-1]
+                    new_n_val[j] = new_n_val[np.random.ranint(0,len(new_n_val))]
             merged_normal_dset_val[i*len(f_n_valid):(i+1)*len(f_n_valid)] = new_n_val
                                                    
         merged_h5.close()
