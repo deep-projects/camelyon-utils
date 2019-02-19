@@ -84,6 +84,19 @@ def main():
         f_t_valid = files_tumor[0::2]
         f_n_valid = files_normal[0::2]
         
+        h5_t_train = []
+        h5_n_train = []
+        h5_t_val = []
+        h5_n_val = []
+        for j in range(len(f_t_train)):
+            h5_t_train.append(h5py.File(j, 'r', libver='latest', swmr=True)
+        for j in range(len(f_n_train)):
+            h5_n_train.append(h5py.File(j, 'r', libver='latest', swmr=True)
+        for j in range(len(f_t_valid)):
+            h5_t_val.append(h5py.File(j, 'r', libver='latest', swmr=True)
+        for j in range(len(f_n_valid)):
+            h5_n_val.append(h5py.File(j, 'r', libver='latest', swmr=True)
+        
         print('creating merged file at: ', MERGED_HDF5)
         merged_h5 = h5py.File(MERGED_HDF5, mode='w')
         merged_tumor_dset_train = merged_h5.create_dataset(name='tumor_train', shape=(len(f_t_train)*7500, 512, 512, 3), dtype=np.uint8)
@@ -98,34 +111,30 @@ def main():
             new_t_val = np.ndarray((len(f_t_valid),512,512,3))
             new_n_val = np.ndarray((len(f_n_valid),512,512,3))
             
-            for j in range(len(f_t_train)):
-                h5 = h5py.File(f_t_train[j], 'r', libver='latest', swmr=True)
-                if h5['img'].shape[1] >= 1:
-                    new_t_train[j] = h5['img'][0,np.random.randint(0,h5['img'].shape[1])]
+            for j in h5_t_train:
+                if j['img'].shape[1] >= 1:
+                    new_t_train[j] = j['img'][0,np.random.randint(0,j['img'].shape[1])]
                 else:
                     new_t_train[j] = merged_tumor_dset_train[-1]
             merged_tumor_dset_train[i*len(f_t_train):(i+1)*len(f_t_train)] = new_t_train
             
-            for j in range(len(f_n_train)):
-                h5 = h5py.File(f_n_train[j], 'r', libver='latest', swmr=True)
-                if h5['img'].shape[1] >= 1:
-                    new_n_train[j] = h5['img'][0,np.random.randint(0,h5['img'].shape[1])]
+            for j in h5_n_train:
+                if j['img'].shape[1] >= 1:
+                    new_n_train[j] = j['img'][0,np.random.randint(0,j['img'].shape[1])]
                 else:
                     new_n_train[j] = merged_normal_dset_train[-1]
             merged_normal_dset_train[i*len(f_n_train):(i+1)*len(f_n_train)] = new_n_train
             
-            for j in range(len(f_t_valid)):
-                h5 = h5py.File(f_t_valid[j], 'r', libver='latest', swmr=True)
-                if h5['img'].shape[1] >= 1:
-                    new_t_val[j] = h5['img'][0,np.random.randint(0,h5['img'].shape[1])]
+            for j h5_t_val:
+                if j['img'].shape[1] >= 1:
+                    new_t_val[j] = j['img'][0,np.random.randint(0,j['img'].shape[1])]
                 else:
                     new_t_val[j] = merged_tumor_dset_val[-1]
             merged_tumor_dset_val[i*len(f_t_valid):(i+1)*len(f_t_valid)] = new_t_val
             
-            for j in range(len(f_n_valid)):
-                h5 = h5py.File(f_n_valid[j], 'r', libver='latest', swmr=True)
-                if h5['img'].shape[1] >= 1:
-                    new_n_val[j] = h5['img'][0,np.random.randint(0,h5['img'].shape[1])]
+            for j in h5_n_val:
+                if j['img'].shape[1] >= 1:
+                    new_n_val[j] = j['img'][0,np.random.randint(0,j['img'].shape[1])]
                 else:
                     new_n_val[j] = merged_normal_dset_val[-1]
             merged_normal_dset_val[i*len(f_n_valid):(i+1)*len(f_n_valid)] = new_n_val
