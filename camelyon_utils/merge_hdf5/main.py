@@ -89,13 +89,13 @@ def main():
         h5_t_val = []
         h5_n_val = []
         for j in range(len(f_t_train)):
-            h5_t_train.append(h5py.File(j, 'r', libver='latest', swmr=True)
+            h5_t_train.append(h5py.File(j, 'r', libver='latest', swmr=True))
         for j in range(len(f_n_train)):
-            h5_n_train.append(h5py.File(j, 'r', libver='latest', swmr=True)
+            h5_n_train.append(h5py.File(j, 'r', libver='latest', swmr=True))
         for j in range(len(f_t_valid)):
-            h5_t_val.append(h5py.File(j, 'r', libver='latest', swmr=True)
+            h5_t_val.append(h5py.File(j, 'r', libver='latest', swmr=True))
         for j in range(len(f_n_valid)):
-            h5_n_val.append(h5py.File(j, 'r', libver='latest', swmr=True)
+            h5_n_val.append(h5py.File(j, 'r', libver='latest', swmr=True))
         
         print('creating merged file at: ', MERGED_HDF5)
         merged_h5 = h5py.File(MERGED_HDF5, mode='w')
