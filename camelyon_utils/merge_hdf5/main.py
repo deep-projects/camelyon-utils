@@ -94,9 +94,9 @@ def main():
         for i in range(7500):
             print('run ', i, 'of ', 7500)
             new_t_train = np.ndarray((len(f_t_train),512,512,3))
-            new_n_train = np.ndarray((len(f_t_train),512,512,3))
-            new_t_val = np.ndarray((len(f_t_train),512,512,3))
-            new_n_val = np.ndarray((len(f_t_train),512,512,3))
+            new_n_train = np.ndarray((len(f_n_train),512,512,3))
+            new_t_val = np.ndarray((len(f_t_valid),512,512,3))
+            new_n_val = np.ndarray((len(f_n_valid),512,512,3))
             
             for j in range(len(f_t_train)):
                 h5 = h5py.File(f_t_train[j], 'r', libver='latest', swmr=True)
