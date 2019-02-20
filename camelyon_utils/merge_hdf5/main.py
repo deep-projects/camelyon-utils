@@ -2,6 +2,7 @@ import h5py
 import os
 from argparse import ArgumentParser
 import numpy as np
+from time import time
 
 DESCRIPTION = 'Merge single hdf5-files into one.'
 
@@ -35,7 +36,8 @@ def main():
     file_list.sort()
         
         
-        
+    start = time()
+
     if MODE == 'each':
         print('creating merged file at: ', MERGED_HDF5)
         merged_h5 = h5py.File(MERGED_HDF5, mode='w')
@@ -157,3 +159,6 @@ def main():
             merged_normal_dset_val[i*len(f_n_valid):(i+1)*len(f_n_valid)] = new_n_val
                                                    
         merged_h5.close()
+
+    end = time()
+    print('duration (secs):', end-start)
