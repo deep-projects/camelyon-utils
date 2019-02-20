@@ -21,6 +21,11 @@ def main():
         '--mode', action='store', type=str, metavar='MASKFILE',
         help='whether to create single dataset (="single") or one dset for each slide ("each")'
     )
+    parser.add_argument(
+        '--numtiles', action='store', type=str, metavar='MASKFILE',
+        help='number of tiles per slide for single mode'
+    )
+
 
     args = parser.parse_args()
     
@@ -28,6 +33,7 @@ def main():
     HDF5_DIR = args.indir
     MERGED_HDF5 = args.outfile
     MODE = args.mode
+    NUM = args.numtiles if args.numtiles else 3
 
     file_list = []
     for file in os.listdir(HDF5_DIR):
@@ -74,7 +80,6 @@ def main():
         
         
     if MODE == 'single':
-        NUM = 3
         files_tumor = []
         files_normal = []
         for f in file_list:
