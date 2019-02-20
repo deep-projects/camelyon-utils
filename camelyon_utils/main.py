@@ -17,7 +17,6 @@ DESCRIPTION = 'CAMELYON Utils Copyright (C) 2019  Jonas Annuscheit. This softwar
 MODES = OrderedDict([
     ('slide-tiles', {'main': slide_tiles_main, 'description': SLIDE_TILES_DESCRIPTION}),
     ('merge-hdf5', {'main': merge_hdf5_main, 'description': MERGE_HDF5_DESCRIPTION})
-    
 ])
 
 
