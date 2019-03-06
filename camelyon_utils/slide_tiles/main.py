@@ -15,14 +15,14 @@ def main():
         help='Path to MASKFILE in CAMELYON XML format. If this is not given it will done a simple tissue segmentation with an otsu algorithm.'
     )
 
-    parser.add_argument('-ps','--pixel_spacing', nargs='+', type=float, help='<Required> The pixel spacing that you want to use to get the HDF5-File. A lower number means a higher resolution. In CAMEYLON16 the first scanner have the following values: [0.0002439 0.00048781 0.00097561 0.00195122 0.00390244 0.00780488 0.0156098 0.0312195 0.062439 0.124878] and the second scanner: [0.00022727 0.00045454 0.00090909 0.00181818 0.00363636 0.00727273 0.0145455 0.0290909 0.0581818], If you want two layers at the highest resolution good values would be 0.0002439 and 0.00048781.', required=True)
+    parser.add_argument('--pixel-spacing', nargs='+', type=float,default=[0.0002439,0.00048781,0.00097561], help='The pixel spacing that you want to use to get the HDF5-File. A lower number means a higher resolution. In CAMEYLON16 the first scanner have the following values: [0.0002439 0.00048781 0.00097561 0.00195122 0.00390244 0.00780488 0.0156098 0.0312195 0.062439 0.124878] and the second scanner: [0.00022727 0.00045454 0.00090909 0.00181818 0.00363636 0.00727273 0.0145455 0.0290909 0.0581818], If you want two layers at the highest resolution good values would be 0.0002439 and 0.00048781.')
 
     # Todo:
     # parser.add_argument('--no_mask_to_save', dest='save_mask', action='store_false')
     # parser.set_defaults(save_mask=True)
 
     parser.add_argument(
-        '--intervall_to_push_to_hdf5', action='store', type=int, default=100,
+        '--intervall-to-push-to-hdf5', action='store', type=int, default=100,
         help='The intervall that is used to push the samples to the hdf5-file. If this number is really large, than you need more RAM but it could decrese the computation speed.'
     )
 
@@ -42,10 +42,9 @@ def main():
     )
 
     parser.add_argument(
-        '--run_on_testmode', action='store_true', 
+        '--run-on-testmode', action='store_true',default=False,
         help='If you run at on the testmode only 5 epochs will be saved.'
     )
-    parser.set_defaults(run_on_testmode=False)
 
     args = parser.parse_args()
 
