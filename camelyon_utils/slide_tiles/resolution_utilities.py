@@ -46,8 +46,8 @@ def get_ps_from_openslidefile_version_image_description(oslide):
 
 def get_ps_from_openslidefile_version_philips(oslide):
     """This function reads the pixel spacing each layers from the open slide properties.
-    In this function the 'philips.PIIM_PIXEL_DATA_REPRESENTATION_SEQUENCE['+str(layer_id)+'].DICOM_PIXEL_SPACING' is used for this. This version
-    is used in the GigaScience Database of CAMELYON 16.
+    In this function the 'philips.PIIM_PIXEL_DATA_REPRESENTATION_SEQUENCE['+str(layer_id)+'].DICOM_PIXEL_SPACING'
+    is used for this. This version is used in the GigaScience Database of CAMELYON 16.
     
     Args:
         oslide: This is a openslide file, which is used to read the pixel spacing information.
