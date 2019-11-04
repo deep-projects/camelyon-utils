@@ -11,8 +11,12 @@ def main():
         help='Path to SLIDEFILE in  OpenSlide tif format.'
     )
     parser.add_argument(
-        '--mask', action='store', type=str, metavar='XMLFILE', default=None,
-        help='Path to MASKFILE in CAMELYON XML format. If this is not given it will done a simple tissue segmentation with an otsu algorithm.'
+        '--mask', action='store', type=str, metavar='PATH', default=None,
+        help='PATH to mask file in CAMELYON XML format. If this is not given it will done a simple tissue segmentation with an otsu algorithm.'
+    )
+    parser.add_argument(
+        '--mask-dir', action='store', type=str, metavar='PATH', default=None,
+        help='PATH to a directory containing mask files. This PATH will be prepended to a relative --mask PATH, if --mask is specified. Otherwise --mask-dir is ignored.'
     )
 
     parser.add_argument('--pixel-spacing', nargs='+', type=float,default=[0.0002439,0.00048781,0.00097561], help='The pixel spacing that you want to use to get the HDF5-File. A lower number means a higher resolution. In CAMEYLON16 the first scanner have the following values: [0.0002439 0.00048781 0.00097561 0.00195122 0.00390244 0.00780488 0.0156098 0.0312195 0.062439 0.124878] and the second scanner: [0.00022727 0.00045454 0.00090909 0.00181818 0.00363636 0.00727273 0.0145455 0.0290909 0.0581818], If you want two layers at the highest resolution good values would be 0.0002439 and 0.00048781.')
@@ -48,8 +52,11 @@ def main():
 
     args = parser.parse_args()
 
-
-
+    mask_path = None
+    if args.mask is not None:
+        mask_path = args.mask
+        if args.mask_dir is not None:
+            mask_path = os.path.join(args.mask_dir, args.mask)
 
     wanted_pixel_spacings = args.pixel_spacing
 
@@ -67,10 +74,10 @@ def main():
 
     slide_path = os.path.expanduser(args.slide)
 
-    if args.mask is None:
+    if mask_path is None:
         handler = BinaryMaskHandler(level_to_create_the_otsu_mask=level_to_create_otsu)
     else:
-        handler = XMLMaskHandler(args.mask)
+        handler = XMLMaskHandler(mask_path)
 
     convert_openslidefile_to_hdf5(
         slide_path,

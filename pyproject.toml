@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "camelyon-utils"
-version = "0.3"
+version = "0.4"
 authors = ["Jonas Annuscheit <Jonas.Annuscheit@htw-berlin.de>", "Klaus Strohmenger <Klaus.Strohmenger@htw-berlin.de>", "Christoph Jansen <Christoph.Jansen@htw-berlin.de>"]
 license = "AGPL-3.0"
 readme = "README.md"
